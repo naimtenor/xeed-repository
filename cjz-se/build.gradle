@@ -33,6 +33,7 @@ configurations {
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
+	compile("org.mybatis.spring.boot:mybatis-spring-boot-starter:1.1.1")
 	compile('org.elasticsearch:elasticsearch:5.0.0')
 	compile('org.elasticsearch.client:transport:5.0.0')
 	compile('org.apache.logging.log4j:log4j-api:2.6.2')

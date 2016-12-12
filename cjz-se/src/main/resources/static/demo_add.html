@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Service Engine Demo</title>
+<link rel="stylesheet" href="jquery/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</head>
+<body>
+file path : <input id="filePath" size="80"/>
+<br><br>
+tag contents
+<br>
+<textarea id="contents" rows="10" cols="100"></textarea>
+<br><br>
+<button class="ui-button ui-widget ui-corner-all" id="btnSave">Index Data</button>
+<script type="text/javascript">
+	var id = guid();
+	
+
+	$('#btnSave').click(function() {
+		var filePath = document.getElementById('filePath').value;
+		var contents = document.getElementById('contents').value;
+		var data = '[{"id" : "' + id + '", "filePath" : "' + filePath + '", "contents" : "' + contents + '"}]'
+		
+		$.ajax({
+			type : 'POST',
+			headers: {
+		        'Accept':'application/json',
+		        'Content-Type':'application/json'
+		    },
+			url : 'http://localhost:18080/index/tags',
+			data : data,
+			success : function (data) {
+				console.log(data);
+			}
+		});
+	});
+	
+
+	function guid() {
+		function s4() {
+			return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+		}
+		return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+	}
+</script>
+</body>
+</html>
+
+

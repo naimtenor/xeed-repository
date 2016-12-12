@@ -40,7 +40,7 @@ public class ESTemplate implements InitializingBean {
 	public <T> int create(String index, String type, String id, T data) throws SEException {
 		try {
 			IndexResponse response = client.prepareIndex(index, type).setId(id).setSource(OM.writeValueAsString(data)).execute().get();
-			return response.getResult() == Result.CREATED ? 1 : -1;
+			return response.getResult() == Result.CREATED ? 1 : 0;
 		} catch (JsonProcessingException e) {
 			throw new SEException(MessageCode.ESE0001, e);
 		} catch (InterruptedException e) {
