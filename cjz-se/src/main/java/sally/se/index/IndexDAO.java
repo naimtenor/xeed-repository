@@ -20,7 +20,7 @@ public class IndexDAO {
 	@Autowired
 	private ESTemplate esTemplate;
 
-	public int classificationTags(IndexRequest request, MappedKey mk) throws SEException {
+	public int indexTag(IndexRequest request, MappedKey mk) throws SEException {
 		// TODO : 바꿀 필요 있음
 		Map<String, Object> data = new HashMap<>();
 		data.put("id", request.getId());

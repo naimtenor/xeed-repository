@@ -18,13 +18,13 @@ public class IndexPostController {
 	@Autowired
 	private IndexDAO indexDAO;
 
-	public int classificationTags(List<IndexRequest> requestList) throws SEException {
+	public int classificationByKeymap(List<IndexRequest> requestList) throws SEException {
 		
 		int count = 0;
 		
 		for (IndexRequest request : requestList) {
 			MappedKey mk = keyMapHandler.mappingKeyMap(request.getContents().split(","));
-			count += indexDAO.classificationTags(request, mk);
+			count += indexDAO.indexTag(request, mk);
 		}
 		
 		return count;

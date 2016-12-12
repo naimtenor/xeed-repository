@@ -22,15 +22,9 @@ public class IndexController {
 	private IndexPostController indexPostController;
 
 	@RequestMapping(value = "/index/tags", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public int classificationTags(@RequestBody List<IndexRequest> requestList) {
-		for (IndexRequest req : requestList) {
-			LOGGER.debug(req.getId());
-			LOGGER.debug(req.getFilePath());
-			LOGGER.debug(req.getContents());
-		}
-		
+	public int classificationTags(@RequestBody List<IndexRequest> requestList) {		
 		try {
-			return indexPostController.classificationTags(requestList);
+			return indexPostController.classificationByKeymap(requestList);
 		} catch (SEException e) {
 			e.printStackTrace();
 			return -1;
