@@ -8,6 +8,6 @@ import org.apache.ibatis.annotations.Select;
 public interface KeyMapper {
 
 	@Select("SELECT CATEGORY FROM KEYMAP WHERE WORD = #{word}")
-	int getCategoryByWord(@Param("word") String word);
+	String getCategoryByWord(@Param("word") String word);
 	
 }

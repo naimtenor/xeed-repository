@@ -8,6 +8,8 @@ public class IndexRequest {
 	
 	private String contents;
 	
+	private String frContents;
+	
 	private long timeSs;
 
 	public String getId() {
@@ -40,6 +42,14 @@ public class IndexRequest {
 
 	public void setTimeSs(long timeSs) {
 		this.timeSs = timeSs;
+	}
+
+	public String getFrContents() {
+		return frContents;
+	}
+
+	public void setFrContents(String frContents) {
+		this.frContents = frContents;
 	}
 	
 }

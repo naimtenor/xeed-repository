@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import org.elasticsearch.action.DocWriteResponse.Result;
+import org.elasticsearch.action.delete.DeleteResponse;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
@@ -115,6 +116,11 @@ public class ESTemplate implements InitializingBean {
 		} catch (ExecutionException e) {
 			throw new SEException(MessageCode.ESE0003, e);
 		}
+	}
+	
+	public int delete(String index, String type, String id) throws SEException {
+		DeleteResponse response = client.prepareDelete(index, type, id).get();
+		return response.getResult() == Result.DELETED ? 1 : 0;
 	}
 	
 

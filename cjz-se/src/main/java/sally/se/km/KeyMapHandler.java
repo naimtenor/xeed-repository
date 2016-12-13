@@ -16,28 +16,30 @@ public class KeyMapHandler implements InitializingBean {
 		MappedKey mappedKey = new MappedKey();
 		
 		for (String word : words) {
-			int result = keyMapper.getCategoryByWord(word);
-			switch (result) {
-			case 1:
-				mappedKey.setWhoKeys(mappedKey.getWhoKeys().equals("") ? word : "," + word);
-				break;
-			case 2:
-				mappedKey.setWhenKeys(mappedKey.getWhenKeys().equals("") ? word : "," + word);
-				break;
-			case 3:
-				mappedKey.setWhereKeys(mappedKey.getWhereKeys().equals("") ? word : "," + word);
-				break;
-			case 4:
-				mappedKey.setWhatKeys(mappedKey.getWhatKeys().equals("") ? word : "," + word);
-				break;
-			case 5:
-				mappedKey.setHowKeys(mappedKey.getHowKeys().equals("") ? word : "," + word);
-				break;
-			case 6:
-				mappedKey.setWhyKeys(mappedKey.getWhyKeys().equals("") ? word : "," + word);
-				break;
-			default:
-				break;
+			String result = keyMapper.getCategoryByWord(word);
+			if (result != null) {
+				switch (result) {
+				case "1":
+					mappedKey.setWhoKeys(mappedKey.getWhoKeys().equals("") ? word : mappedKey.getWhoKeys().equals("") + "," + word);
+					break;
+				case "2":
+					mappedKey.setWhenKeys(mappedKey.getWhenKeys().equals("") ? word : mappedKey.getWhenKeys().equals("") + "," + word);
+					break;
+				case "3":
+					mappedKey.setWhereKeys(mappedKey.getWhereKeys().equals("") ? word : mappedKey.getWhereKeys().equals("") + "," + word);
+					break;
+				case "4":
+					mappedKey.setWhatKeys(mappedKey.getWhatKeys().equals("") ? word : mappedKey.getWhatKeys().equals("") + "," + word);
+					break;
+				case "5":
+					mappedKey.setHowKeys(mappedKey.getHowKeys().equals("") ? word : mappedKey.getHowKeys().equals("") + "," + word);
+					break;
+				case "6":
+					mappedKey.setWhyKeys(mappedKey.getWhyKeys().equals("") ? word : mappedKey.getWhyKeys().equals("") + "," + word);
+					break;
+				default:
+					break;
+				}
 			}
 		}
 		

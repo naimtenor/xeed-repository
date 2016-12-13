@@ -1,5 +1,6 @@
 package sally.se.index;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,6 +32,14 @@ public class IndexDAO {
 		data.put("imagga_what_tag", mk.getWhatKeys());
 		data.put("imagga_why_tag", mk.getWhyKeys());
 		data.put("imagga_how_tag", mk.getHowKeys());
+		data.put("fr_tag", request.getFrContents());
+		data.put("", "");
+		
+		if (request.getFilePath() != null && !"".equals(request.getFilePath().trim())) {
+			
+			data.put("image_file_name", request.getFilePath().substring(request.getFilePath().indexOf(File.separator) + 1));
+			data.put("image_file_path", request.getFilePath().substring(0, request.getFilePath().lastIndexOf(File.separator)));
+		}		
 		
 		return esTemplate.create(INDEX_NAME, TYPE_NAME, request.getId(), data);
 	}
